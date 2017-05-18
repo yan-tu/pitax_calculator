@@ -33,13 +33,31 @@ public class StringOperateUtil {
 	}
 	
 	/**
-	 * 判断字符串中是否为纯数字
+	 * 判断字符串中是否为纯数字（整数）
 	 * @Description:TODO
 	 * @author:YanTu
 	 * @date:2017年5月17日下午5:08:10
 	 */
-	public static boolean isNumber(String inputStr) {
+	public static boolean isPureNumber(String inputStr) {
 		String regStr = "^[+-]?[1-9][0-9]*$|^0$";
 		return inputStr.matches(regStr);
+	}
+	
+	/**
+	 * 判断字符串是否为数字（包括浮点数）
+	 * @Description:TODO
+	 * @author:YanTu
+	 * @date:2017年5月18日上午11:34:36
+	 */
+	public static boolean isNumber(String inputStr){
+		String regStr = "^[+-]?(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
+		return inputStr.matches(regStr);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(isNumber("-0.23"));
+		System.out.println(isNumber("-23"));
+		System.out.println(isNumber("23"));
+		System.out.println(isNumber("23.5343"));
 	}
 }
