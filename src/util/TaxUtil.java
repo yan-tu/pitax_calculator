@@ -26,7 +26,8 @@ public class TaxUtil {
 		//税后收入
 		double salaryAfterTax = 0.0;
 		//应纳税所得额
-		double taxableIncome = incomeTax.getSalaryBeforeTax()  - incomeTax.getSocialInsurance() - incomeTax.getHousingFund() - threshold;
+		double taxableIncome = incomeTax.getSalaryBeforeTax()  - incomeTax.getSocialInsurance() 
+				- incomeTax.getHousingFund() - threshold;
 		taxes = countIncomeTaxInChengdu2017(taxableIncome);
 		taxes = new BigDecimal(taxes).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		incomeTax.setTaxes(taxes);
@@ -42,7 +43,8 @@ public class TaxUtil {
 	 * @date:2017年5月17日上午10:59:08
 	 */
 	private static double getSalaryAfterTax(IncomeTax incomeTax) {
-		double salaryAfterTax = incomeTax.getSalaryBeforeTax() - incomeTax.getSocialInsurance() - incomeTax.getHousingFund() - incomeTax.getTaxes();
+		double salaryAfterTax = incomeTax.getSalaryBeforeTax() - incomeTax.getSocialInsurance() 
+				- incomeTax.getHousingFund() - incomeTax.getTaxes();
 		salaryAfterTax = new BigDecimal(salaryAfterTax).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 		return salaryAfterTax;
 	}
