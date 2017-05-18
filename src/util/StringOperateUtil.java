@@ -39,6 +39,7 @@ public class StringOperateUtil {
 	 * @date:2017年5月17日下午5:08:10
 	 */
 	public static boolean isPureNumber(String inputStr) {
+		if(isNotExist(inputStr)) return false;
 		String regStr = "^[+-]?[1-9][0-9]*$|^0$";
 		return inputStr.matches(regStr);
 	}
@@ -50,6 +51,7 @@ public class StringOperateUtil {
 	 * @date:2017年5月18日上午11:34:36
 	 */
 	public static boolean isNumber(String inputStr){
+		if(isNotExist(inputStr)) return false;
 		String regStr = "^[+-]?(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
 		return inputStr.matches(regStr);
 	}

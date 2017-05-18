@@ -12,11 +12,11 @@ public class IncomeTax implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private double taxes;//税费
-	private double salaryBeforeTax;//税前工资奖金总收入
-	private double socialInsurance;//社会保险费
-	private double housingFund;//住房公积金
-	private double salaryAfterTax;//税后收入
+	private Double taxes;//税费
+	private Double salaryBeforeTax;//税前工资奖金总收入
+	private Double socialInsurance;//社会保险费
+	private Double housingFund;//住房公积金
+	private Double salaryAfterTax;//税后收入
 	
 	public IncomeTax() {
 	}
@@ -30,42 +30,45 @@ public class IncomeTax implements Serializable{
 		this.socialInsurance = socialInsurance;
 		this.housingFund = housingFund;
 	}
-	
-	public double getTaxes() {
+
+	public Double getTaxes() {
 		return taxes;
 	}
-	public void setTaxes(double taxes) {
+
+	public void setTaxes(Double taxes) {
 		this.taxes = taxes;
 	}
-	public double getSocialInsurance() {
-		return socialInsurance;
-	}
-	public void setSocialInsurance(double socialInsurance) {
-		this.socialInsurance = socialInsurance;
-	}
-	public double getHousingFund() {
-		return housingFund;
-	}
-	public void setHousingFund(double housingFund) {
-		this.housingFund = housingFund;
-	}
 
-	public double getSalaryBeforeTax() {
+	public Double getSalaryBeforeTax() {
 		return salaryBeforeTax;
 	}
 
-	public void setSalaryBeforeTax(double salaryBeforeTax) {
+	public void setSalaryBeforeTax(Double salaryBeforeTax) {
 		this.salaryBeforeTax = salaryBeforeTax;
 	}
 
-	public double getSalaryAfterTax() {
+	public Double getSocialInsurance() {
+		return socialInsurance;
+	}
+
+	public void setSocialInsurance(Double socialInsurance) {
+		this.socialInsurance = socialInsurance;
+	}
+
+	public Double getHousingFund() {
+		return housingFund;
+	}
+
+	public void setHousingFund(Double housingFund) {
+		this.housingFund = housingFund;
+	}
+
+	public Double getSalaryAfterTax() {
 		return salaryAfterTax;
 	}
 
-	public void setSalaryAfterTax(double salaryAfterTax) {
+	public void setSalaryAfterTax(Double salaryAfterTax) {
 		this.salaryAfterTax = salaryAfterTax;
 	}
-	
-	
 	
 }

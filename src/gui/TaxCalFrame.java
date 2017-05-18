@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,19 +22,19 @@ import util.TaxUtil;
 import entity.IncomeTax;
 
 /**
- * ¸öË°¼ÆËãÆ÷×Ü´°Ìå
- * @Description:Õ¹Ê¾¸öË°¼ÆËãÆ÷µÄËùÓĞÄÚÈİ
+ * ä¸ªç¨è®¡ç®—å™¨æ€»çª—ä½“
+ * @Description:å±•ç¤ºä¸ªç¨è®¡ç®—å™¨çš„æ‰€æœ‰å†…å®¹
  * @author YanTu
- * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:12:03
+ * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:12:03
  */
 public class TaxCalFrame extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
-	//¼ÆËãÄ£Ê½Ñ¡Ôñ
-	private JRadioButton countTaxRadio = new JRadioButton("¸ù¾İË°Ç°ÊÕÈë¼ÆËã¸öÈËËùµÃË°");
-	private JRadioButton countSalaryRadio = new JRadioButton("¸ù¾İ¸öÈËËùµÃË°¼ÆËãË°Ç°ÊÕÈë");
-	//ÊäÈë
+	//è®¡ç®—æ¨¡å¼é€‰æ‹©
+	private JRadioButton countTaxRadio = new JRadioButton("æ ¹æ®ç¨å‰æ”¶å…¥è®¡ç®—ä¸ªäººæ‰€å¾—ç¨");
+	private JRadioButton countSalaryRadio = new JRadioButton("æ ¹æ®ä¸ªäººæ‰€å¾—ç¨è®¡ç®—ç¨å‰æ”¶å…¥");
+	//è¾“å…¥
 	private JTextField salaryField = new JTextField("");
 	private JTextField socialInsuranceField = new JTextField("");
 	private JTextField housingFundField = new JTextField("");
@@ -42,7 +43,7 @@ public class TaxCalFrame extends JFrame{
 	private JPanel inputPane = new JPanel();
 	private JPanel taxesInputPane = new JPanel();
 	private JPanel salaryPane = new JPanel();
-	//Êä³ö
+	//è¾“å‡º
 	private JTextField taxesOutPutField = new JTextField("");
 	private JTextField salaryAfterTaxField = new JTextField("");
 	private JTextField salaryBeforeTaxField = new JTextField("");
@@ -56,15 +57,15 @@ public class TaxCalFrame extends JFrame{
 		init();
 	}
 	/**
-	 * @Description:Ò³Ãæ³õÊ¼»¯
+	 * @Description:é¡µé¢åˆå§‹åŒ–
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:17:09
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:17:09
 	 */
 	private void init() {
-		setTitle("¸öË°¼ÆËãÆ÷");
-		setSize(280,360);
-		setLocationRelativeTo(null);//ÈÃ´°¿Ú¾ÓÖĞ
-		this.setResizable(false);//²»¿É¸Ä±ä´óĞ¡
+		setTitle("ä¸ªç¨è®¡ç®—å™¨ï¼ˆæˆéƒ½-2017ï¼‰");
+		setSize(280,390);
+		setLocationRelativeTo(null);//è®©çª—å£å±…ä¸­
+		this.setResizable(false);//ä¸å¯æ”¹å˜å¤§å°
 		setBackground(Color.white);
 		setContentPane(createContentPane());
 		initContentPane();
@@ -72,35 +73,36 @@ public class TaxCalFrame extends JFrame{
 		setVisible(true);
 	}
 	/**
-	 * @Description:³õÊ¼»¯ÈİÆ÷
+	 * @Description:åˆå§‹åŒ–å®¹å™¨
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç10:33:12
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ10:33:12
 	 */
 	private void initContentPane() {
 		countTaxRadio.setSelected(true);
-		inputPane.remove(taxesInputPane);//Òş²Ø¸öË°ÊäÈëÃæ°å
-		outPutPane.remove(salaryBeforeTaxPane);//Òş²ØË°Ç°ÊÕÈëÊä³öÃæ°å
+		inputPane.remove(taxesInputPane);//éšè—ä¸ªç¨è¾“å…¥é¢æ¿
+		outPutPane.remove(salaryBeforeTaxPane);//éšè—ç¨å‰æ”¶å…¥è¾“å‡ºé¢æ¿
 	}
 	/**
-	 * @Description:Ìí¼ÓÄÚÈİÃæ°å
+	 * @Description:æ·»åŠ å†…å®¹é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:39:18
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:39:18
 	 */
 	private JPanel createContentPane() {
 		JPanel pane = new JPanel(new BorderLayout());
-		pane.add(createInputContentPane(),"North");
-		pane.add(createOutputPane(),"South");
-		pane.setBorder(new EmptyBorder(10,10,10,10));//ÉÏ£¬×ó£¬ÏÂ£¬ÓÒ
+		pane.add(createHeadPane(),"North");
+		pane.add(createBottomPane(),"South");
+		//pane.add(createOutputPane(),"South");
+		pane.setBorder(new EmptyBorder(10,10,10,10));//ä¸Šï¼Œå·¦ï¼Œä¸‹ï¼Œå³
 		pane.setBackground(Color.WHITE);
 		return pane;
 	}
 	
 	/**
-	 * @Description:´´½¨ÊäÈëÄÚÈİÃæ°å
+	 * @Description:åˆ›å»ºå¤´éƒ¨é¢æ¿ï¼ŒåŒ…æ‹¬æ¨¡å¼é€‰æ‹©ã€å†…å®¹è¾“å…¥å’Œè®¡ç®—æŒ‰é’®é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:52:13
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:52:13
 	 */
-	private Component createInputContentPane() {
+	private Component createHeadPane() {
 		JPanel pane = new JPanel(new BorderLayout());
 		pane.add(createModeSelectPane(),"North");
 		pane.add(createInputFieldsPane(),"Center");
@@ -111,9 +113,9 @@ public class TaxCalFrame extends JFrame{
 	
 	/**
 	 * 
-	 * @Description:´´½¨Ä£Ê½Ñ¡ÔñÃæ°å
+	 * @Description:åˆ›å»ºæ¨¡å¼é€‰æ‹©é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:54:30
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:54:30
 	 */
 	private Component createModeSelectPane() {
 		JPanel pane = new JPanel(new GridLayout(0,1,3,3));
@@ -134,9 +136,7 @@ public class TaxCalFrame extends JFrame{
 				salaryBeforeTaxPane.setVisible(false);
 				outPutPane.remove(salaryBeforeTaxPane);
 				taxesOutputPane.setVisible(true);
-				salaryAfterTaxPane.setVisible(true);
 				outPutPane.add(taxesOutputPane);
-				outPutPane.add(salaryAfterTaxPane);
 			}
 		});
 		countSalaryRadio.addActionListener(new ActionListener(){
@@ -148,9 +148,7 @@ public class TaxCalFrame extends JFrame{
 				inputPane.add(taxesInputPane);
 				
 				taxesOutputPane.setVisible(false);
-				salaryAfterTaxPane.setVisible(false);
 				outPutPane.remove(taxesOutputPane);
-				outPutPane.remove(salaryAfterTaxPane);
 				salaryBeforeTaxPane.setVisible(true);
 				outPutPane.add(salaryBeforeTaxPane);
 			}
@@ -162,9 +160,9 @@ public class TaxCalFrame extends JFrame{
 	}
 	
 	/**
-	 * @Description:´´½¨ÊäÈëÖµÃæ°å
+	 * @Description:åˆ›å»ºè¾“å…¥å€¼é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:51:58
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:51:58
 	 */
 	private Component createInputFieldsPane() {
 		GridLayout inputLayout = new GridLayout(0,1,3,3);
@@ -175,19 +173,19 @@ public class TaxCalFrame extends JFrame{
 		inputPane.add(createHousingFundPane());
 		inputPane.add(createSalaryPane());
 		inputPane.add(createTaxesInputPane());
-		inputPane.setBorder(new EmptyBorder(15,10,10,10));//ÉÏ£¬×ó£¬ÏÂ£¬ÓÒ
+		inputPane.setBorder(new EmptyBorder(15,10,10,10));//ä¸Šï¼Œå·¦ï¼Œä¸‹ï¼Œå³
 		inputPane.setBackground(Color.WHITE);
 		return inputPane;
 	}
 	/**
-	 * @Description:´´½¨Ë°Ç°ÊÕÈëÊäÈëÃæ°å
+	 * @Description:åˆ›å»ºç¨å‰æ”¶å…¥è¾“å…¥é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç9:33:47
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ9:33:47
 	 */
 	private Component createSalaryPane() {
 		//salaryPane = new JPanel(new GridLayout(1, 2));
 		salaryPane = new JPanel(new BorderLayout());
-		JLabel salaryLabel = new JLabel("Ë°Ç°ÊÕÈë£º");
+		JLabel salaryLabel = new JLabel("ç¨å‰æ”¶å…¥ï¼š");
 		salaryField = new JTextField("");
 		salaryPane.add(salaryLabel,"West");
 		salaryPane.add(salaryField,"Center");
@@ -197,13 +195,13 @@ public class TaxCalFrame extends JFrame{
 	}
 	
 	/**
-	 * @Description:´´½¨¸öÈËËùµÃË°ÊäÈëÃæ°å
+	 * @Description:åˆ›å»ºä¸ªäººæ‰€å¾—ç¨è¾“å…¥é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç9:47:36
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ9:47:36
 	 */
 	private Component createTaxesInputPane() {
 		taxesInputPane = new JPanel(new BorderLayout());
-		JLabel taxesInputLabel = new JLabel("¸öÈËËùµÃË°£º");
+		JLabel taxesInputLabel = new JLabel("ä¸ªäººæ‰€å¾—ç¨ï¼š");
 		taxesInputField = new JTextField("");
 		taxesInputPane.add(taxesInputLabel,"West");
 		taxesInputPane.add(taxesInputField,"Center");
@@ -212,13 +210,13 @@ public class TaxCalFrame extends JFrame{
 	}
 	
 	/**
-	 * @Description:´´½¨Éç±£ÊäÈëÃæ°å
+	 * @Description:åˆ›å»ºç¤¾ä¿è¾“å…¥é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç9:34:03
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ9:34:03
 	 */
 	private Component createSocialInsurancePane() {
 		JPanel pane = new JPanel(new BorderLayout());
-		JLabel socialInsuranceLabel = new JLabel("Éç±££º");
+		JLabel socialInsuranceLabel = new JLabel("ä¸ªäººç¼´çº³ç¤¾ä¿è´¹ï¼š");
 		socialInsuranceField = new JTextField("");
 		pane.add(socialInsuranceLabel,"West");
 		pane.add(socialInsuranceField,"Center");
@@ -226,13 +224,13 @@ public class TaxCalFrame extends JFrame{
 		return pane;
 	}
 	/**
-	 * @Description:´´½¨¹«»ı½ğÊäÈëÃæ°å
+	 * @Description:åˆ›å»ºå…¬ç§¯é‡‘è¾“å…¥é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç9:34:30
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ9:34:30
 	 */
 	private Component createHousingFundPane() {
 		JPanel pane = new JPanel(new BorderLayout());
-		JLabel housingFundLabel = new JLabel("¹«»ı½ğ£º");
+		JLabel housingFundLabel = new JLabel("ä¸ªäººç¼´çº³å…¬ç§¯é‡‘è´¹ï¼š");
 		housingFundField = new JTextField("");
 		pane.add(housingFundLabel,"West");
 		pane.add(housingFundField,"Center");
@@ -240,9 +238,9 @@ public class TaxCalFrame extends JFrame{
 		return pane;
 	}
 	/**
-	 * @Description:´´½¨¼ÆËã°´Å¥ÇøÓòÃæ°å
+	 * @Description:åˆ›å»ºè®¡ç®—æŒ‰é’®åŒºåŸŸé¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:51:27
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:51:27
 	 */
 	private Component createCountButtonAreaPane() {
 		JPanel pane = new JPanel(new GridLayout(0,1,3,3));
@@ -253,54 +251,82 @@ public class TaxCalFrame extends JFrame{
 	}
 
 	/**
-	 * @Description:´´½¨¼ÆËã°´Å¥Ãæ°å
+	 * @Description:åˆ›å»ºè®¡ç®—æŒ‰é’®é¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç11:19:43
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ11:19:43
 	 */
 	private Component createCountButtonPane() {
 		JPanel pane = new JPanel();
-		JButton count = new JButton("¼ÆËã");
+		JButton count = new JButton("è®¡ç®—");
+		getRootPane().setDefaultButton(count);
 		pane.add(count);
 		count.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String salaryText = salaryField.getText();
-				String socialInsuranceText =socialInsuranceField.getText();
-				String housingFundText = housingFundField.getText();
-				double salary = StringOperateUtil.isNumber(salaryText)?Double.parseDouble(salaryText):0.0;
+				String socialInsuranceText =socialInsuranceField.getText();//ç¤¾ä¿è´¹
+				String housingFundText = housingFundField.getText();//å…¬ç§¯é‡‘è´¹
 				double socialInsurance = StringOperateUtil.isNumber(socialInsuranceText)?Double.parseDouble(socialInsuranceText):0.0;
 				double housingFund = StringOperateUtil.isNumber(housingFundText)?Double.parseDouble(housingFundText):0.0;
-				IncomeTax incomeTax = new IncomeTax(salary,socialInsurance,housingFund);
-				IncomeTax resultIncomeTax = TaxUtil.getIncomeTaxForSalary(incomeTax);
-				taxesOutPutField.setText(String.valueOf(resultIncomeTax.getTaxes()));
-				salaryAfterTaxField.setText(String.valueOf(resultIncomeTax.getSalaryAfterTax()));
+				if(countTaxRadio.isSelected()){//è®¡ç®—ä¸ªç¨
+					String salaryText = salaryField.getText();
+					double salary = StringOperateUtil.isNumber(salaryText)?Double.parseDouble(salaryText):0.0;
+					IncomeTax incomeTax = new IncomeTax(salary,socialInsurance,housingFund);
+					IncomeTax resultIncomeTax = TaxUtil.getIncomeTaxForSalary(incomeTax);
+					if(resultIncomeTax != null){
+						taxesOutPutField.setText(String.valueOf(resultIncomeTax.getTaxes()));
+						salaryAfterTaxField.setText(String.valueOf(resultIncomeTax.getSalaryAfterTax()));
+					}
+				}else{//è®¡ç®—æ”¶å…¥
+					String taxesInputText = taxesInputField.getText();//ä¸ªäººæ‰€å¾—ç¨
+					double taxes = StringOperateUtil.isNumber(taxesInputText)?Double.parseDouble(taxesInputText):0.0;
+					IncomeTax incomeTax = new IncomeTax(taxes);
+					incomeTax.setSocialInsurance(socialInsurance);
+					incomeTax.setHousingFund(housingFund);
+					IncomeTax resultIncomeTax = TaxUtil.getSalaryByTax(incomeTax);
+					if(resultIncomeTax != null){
+						salaryBeforeTaxField.setText(String.valueOf(resultIncomeTax.getSalaryBeforeTax()));
+						salaryAfterTaxField.setText(String.valueOf(resultIncomeTax.getSalaryAfterTax()));
+					}
+				}
 			}
 		});
 		pane.setBackground(Color.WHITE);
 		return pane;
 	}
 	/**
-	 * @Description:´´½¨Êä³öÃæ°å
+	 * @Description:åˆ›å»ºåº•éƒ¨é¢æ¿ï¼ŒåŒ…æ‹¬è¾“å‡ºé¢æ¿å’Œç‰ˆæƒé¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç2:39:45
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸‹åˆ2:58:14
+	 */
+	private Component createBottomPane(){
+		JPanel pane = new JPanel(new BorderLayout());
+		pane.add(createOutputPane(),"Center");
+		pane.add(createCopyRightPane(),"South");
+		return pane;
+	}
+	
+	/**
+	 * @Description:åˆ›å»ºè¾“å‡ºé¢æ¿
+	 * @author:YanTu
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ2:39:45
 	 */
 	private Component createOutputPane() {
 		outPutPane = new JPanel(new GridLayout(0,1,3,3));
-		outPutPane.add(createTaxesPanel());
 		outPutPane.add(createSalaryAfterTaxPanel());
+		outPutPane.add(createTaxesPanel());
 		outPutPane.add(createSalaryBeforeTaxPanel());
-		outPutPane.setBorder(new EmptyBorder(15,10,0,10));//ÉÏ£¬×ó£¬ÏÂ£¬ÓÒ
+		outPutPane.setBorder(new EmptyBorder(15,10,10,10));//ä¸Šï¼Œå·¦ï¼Œä¸‹ï¼Œå³
 		outPutPane.setBackground(Color.WHITE);
 		return outPutPane;
 	}
 	/**
-	 * @Description:Ó¦¿Û¸öÈËËùµÃË°½á¹ûÃæ°å
+	 * @Description:åº”æ‰£ä¸ªäººæ‰€å¾—ç¨ç»“æœé¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç5:26:57
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ5:26:57
 	 */
 	private Component createTaxesPanel() {
 		taxesOutputPane = new JPanel(new BorderLayout());
-		JLabel taxesLabel = new JLabel("Ó¦¿Û¸öÈËËùµÃË°Îª£º");
+		JLabel taxesLabel = new JLabel("åº”æ‰£ä¸ªäººæ‰€å¾—ç¨ä¸ºï¼š");
 		taxesOutPutField = new JTextField("");
 		taxesOutputPane.add(taxesLabel,"West");
 		taxesOutputPane.add(taxesOutPutField,"Center");
@@ -308,13 +334,13 @@ public class TaxCalFrame extends JFrame{
 		return taxesOutputPane;
 	}
 	/**
-	 * @Description:Ë°ºóÊÕÈë½á¹ûÃæ°å
+	 * @Description:ç¨åæ”¶å…¥ç»“æœé¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç5:27:20
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ5:27:20
 	 */
 	private Component createSalaryAfterTaxPanel() {
 		salaryAfterTaxPane = new JPanel(new BorderLayout());
-		JLabel salaryAfterTaxLabel = new JLabel("Ë°ºóÊÕÈëÎª£º");
+		JLabel salaryAfterTaxLabel = new JLabel("ç¨åæ”¶å…¥ä¸ºï¼š");
 		salaryAfterTaxField = new JTextField("");
 		salaryAfterTaxPane.add(salaryAfterTaxLabel,"West");
 		salaryAfterTaxPane.add(salaryAfterTaxField,"Center");
@@ -322,13 +348,13 @@ public class TaxCalFrame extends JFrame{
 		return salaryAfterTaxPane;
 	}
 	/**
-	 * @Description:Ë°Ç°ÊÕÈë½á¹ûÃæ°å
+	 * @Description:ç¨å‰æ”¶å…¥ç»“æœé¢æ¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç10:50:43
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ10:50:43
 	 */
 	private Component createSalaryBeforeTaxPanel() {
 		salaryBeforeTaxPane = new JPanel(new BorderLayout());
-		JLabel salaryBeforeTaxLabel = new JLabel("Ë°Ç°ÊÕÈëÎª£º");
+		JLabel salaryBeforeTaxLabel = new JLabel("ç¨å‰æ”¶å…¥ä¸ºï¼š");
 		salaryBeforeTaxField = new JTextField("");
 		salaryBeforeTaxPane.add(salaryBeforeTaxLabel,"West");
 		salaryBeforeTaxPane.add(salaryBeforeTaxField,"Center");
@@ -337,14 +363,30 @@ public class TaxCalFrame extends JFrame{
 	}
 	
 	/**
-	 * @Description:´´½¨·Ö¸îÏß
+	 * @Description:åˆ›å»ºåˆ†å‰²çº¿
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç11:09:56
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ11:09:56
 	 */
 	private Component createPartingLine() {
 		JLabel partingLine = new JLabel();
 		partingLine.setText("_________________________________");
-		partingLine.setBorder(new EmptyBorder(0,10,5,10));//ÉÏ£¬×ó£¬ÏÂ£¬ÓÒ
+		partingLine.setBorder(new EmptyBorder(0,10,5,10));//ä¸Šï¼Œå·¦ï¼Œä¸‹ï¼Œå³
 		return partingLine;
+	}
+	
+	/**
+	 * @Description:åˆ›å»ºç‰ˆæƒä¿¡æ¯é¢æ¿
+	 * @author:YanTu
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸‹åˆ3:02:08
+	 */
+	private Component createCopyRightPane() {
+		JPanel pane = new JPanel(new BorderLayout());
+		pane.setBorder(new EmptyBorder(10,10,0,10));//ä¸Šï¼Œå·¦ï¼Œä¸‹ï¼Œå³
+		pane.setBackground(Color.WHITE);
+		JLabel copyRightLabel = new JLabel("Â©2017 Yantu. All Rights Reserved.");
+		Font font = new Font("Arial",Font.PLAIN,10 ); 
+		copyRightLabel.setFont(font);
+		pane.add(copyRightLabel,"East");
+		return pane;
 	}
 }
