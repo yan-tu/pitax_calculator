@@ -90,7 +90,9 @@ public class TaxUtil {
 	private static double countIncomeTaxInChengdu2017(double taxableIncome){
 		//个人所得税计算公式:应纳税额=应纳税所得额*适用税率-速算扣除数
 		double tax = 0.0;
-		if(taxableIncome <= 1500){
+		if(taxableIncome <= 0){
+			return tax;
+		}else if(taxableIncome > 0 && taxableIncome <= 1500){
 			tax = taxableIncome * 0.03;
 		}else if(taxableIncome > 1500 && taxableIncome <= 4500){
 			tax = taxableIncome * 0.1 - 105;
@@ -116,7 +118,9 @@ public class TaxUtil {
 	 */
 	private static double countTaxableIncomeByTaxInChengdu2017(double tax){
 		double taxableIncome = 0.0;
-		if(tax <= 45){
+		if(tax <= 0){
+			return taxableIncome;
+		}else if(tax> 0 && tax <= 45){
 			taxableIncome = tax / 0.03;
 		}else if(tax >45 && tax <= 345){
 			taxableIncome = (tax + 105) * 10;

@@ -12,6 +12,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -267,26 +268,44 @@ public class TaxCalFrame extends JFrame{
 				String housingFundText = housingFundField.getText();//公积金费
 				double socialInsurance = StringOperateUtil.isNumber(socialInsuranceText)?Double.parseDouble(socialInsuranceText):0.0;
 				double housingFund = StringOperateUtil.isNumber(housingFundText)?Double.parseDouble(housingFundText):0.0;
+				boolean isAbnormalInput = false;//输入异常
 				if(countTaxRadio.isSelected()){//计算个税
 					String salaryText = salaryField.getText();
 					double salary = StringOperateUtil.isNumber(salaryText)?Double.parseDouble(salaryText):0.0;
 					IncomeTax incomeTax = new IncomeTax(salary,socialInsurance,housingFund);
 					IncomeTax resultIncomeTax = TaxUtil.getIncomeTaxForSalary(incomeTax);
-					if(resultIncomeTax != null){
+					if(resultIncomeTax != null && socialInsurance != 0.0 && housingFund != 0.0 && salary != 0.0){
 						taxesOutPutField.setText(String.valueOf(resultIncomeTax.getTaxes()));
 						salaryAfterTaxField.setText(String.valueOf(resultIncomeTax.getSalaryAfterTax()));
+					}else{
+						isAbnormalInput = true;
 					}
 				}else{//计算收入
+					isAbnormalInput = true;
 					String taxesInputText = taxesInputField.getText();//个人所得税
 					double taxes = StringOperateUtil.isNumber(taxesInputText)?Double.parseDouble(taxesInputText):0.0;
 					IncomeTax incomeTax = new IncomeTax(taxes);
 					incomeTax.setSocialInsurance(socialInsurance);
 					incomeTax.setHousingFund(housingFund);
 					IncomeTax resultIncomeTax = TaxUtil.getSalaryByTax(incomeTax);
-					if(resultIncomeTax != null){
+					if(resultIncomeTax != null && socialInsurance != 0.0 && housingFund != 0.0 && taxes != 0.0){
 						salaryBeforeTaxField.setText(String.valueOf(resultIncomeTax.getSalaryBeforeTax()));
 						salaryAfterTaxField.setText(String.valueOf(resultIncomeTax.getSalaryAfterTax()));
+					}else{
+						isAbnormalInput = true;
 					}
+				}
+				if(isAbnormalInput){//提示输入异常
+					new Thread() { 
+						public void run() { 
+							try { 
+								Thread.sleep(2000); 
+							}catch (InterruptedException e1) { 
+							} 
+							JOptionPane.getRootFrame().dispose(); 
+						} 
+					}.start(); 
+					JOptionPane.showMessageDialog(null, "请正确输入!"); 
 				}
 			}
 		});
