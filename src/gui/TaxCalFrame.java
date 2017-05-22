@@ -57,6 +57,7 @@ public class TaxCalFrame extends JFrame{
 	public TaxCalFrame() {
 		init();
 	}
+	
 	/**
 	 * @Description:页面初始化
 	 * @author:YanTu
@@ -73,6 +74,7 @@ public class TaxCalFrame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
+	
 	/**
 	 * @Description:初始化容器
 	 * @author:YanTu
@@ -83,6 +85,7 @@ public class TaxCalFrame extends JFrame{
 		inputPane.remove(taxesInputPane);//隐藏个税输入面板
 		outPutPane.remove(salaryBeforeTaxPane);//隐藏税前收入输出面板
 	}
+	
 	/**
 	 * @Description:添加内容面板
 	 * @author:YanTu
@@ -92,7 +95,6 @@ public class TaxCalFrame extends JFrame{
 		JPanel pane = new JPanel(new BorderLayout());
 		pane.add(createHeadPane(),"North");
 		pane.add(createBottomPane(),"South");
-		//pane.add(createOutputPane(),"South");
 		pane.setBorder(new EmptyBorder(10,10,10,10));//上，左，下，右
 		pane.setBackground(Color.WHITE);
 		return pane;
@@ -167,9 +169,7 @@ public class TaxCalFrame extends JFrame{
 	 */
 	private Component createInputFieldsPane() {
 		GridLayout inputLayout = new GridLayout(0,1,3,3);
-		//JPanel pane = new JPanel(new BorderLayout());
 		inputPane = new JPanel(inputLayout);
-//		JPanel pane = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
 		inputPane.add(createSocialInsurancePane());
 		inputPane.add(createHousingFundPane());
 		inputPane.add(createSalaryPane());
@@ -178,20 +178,19 @@ public class TaxCalFrame extends JFrame{
 		inputPane.setBackground(Color.WHITE);
 		return inputPane;
 	}
+	
 	/**
 	 * @Description:创建税前收入输入面板
 	 * @author:YanTu
 	 * @date:2017年5月18日上午9:33:47
 	 */
 	private Component createSalaryPane() {
-		//salaryPane = new JPanel(new GridLayout(1, 2));
 		salaryPane = new JPanel(new BorderLayout());
 		JLabel salaryLabel = new JLabel("税前收入：");
 		salaryField = new JTextField("");
 		salaryPane.add(salaryLabel,"West");
 		salaryPane.add(salaryField,"Center");
 		salaryPane.setBackground(Color.WHITE);
-		//salaryPane.setSize(250, 320);
 		return salaryPane;
 	}
 	
@@ -224,6 +223,7 @@ public class TaxCalFrame extends JFrame{
 		pane.setBackground(Color.WHITE);
 		return pane;
 	}
+	
 	/**
 	 * @Description:创建公积金输入面板
 	 * @author:YanTu
@@ -238,6 +238,7 @@ public class TaxCalFrame extends JFrame{
 		pane.setBackground(Color.WHITE);
 		return pane;
 	}
+	
 	/**
 	 * @Description:创建计算按钮区域面板
 	 * @author:YanTu
@@ -281,7 +282,6 @@ public class TaxCalFrame extends JFrame{
 						isAbnormalInput = true;
 					}
 				}else{//计算收入
-					isAbnormalInput = true;
 					String taxesInputText = taxesInputField.getText();//个人所得税
 					double taxes = StringOperateUtil.isNumber(taxesInputText)?Double.parseDouble(taxesInputText):0.0;
 					IncomeTax incomeTax = new IncomeTax(taxes);
@@ -312,6 +312,7 @@ public class TaxCalFrame extends JFrame{
 		pane.setBackground(Color.WHITE);
 		return pane;
 	}
+	
 	/**
 	 * @Description:创建底部面板，包括输出面板和版权面板
 	 * @author:YanTu
@@ -338,6 +339,7 @@ public class TaxCalFrame extends JFrame{
 		outPutPane.setBackground(Color.WHITE);
 		return outPutPane;
 	}
+	
 	/**
 	 * @Description:应扣个人所得税结果面板
 	 * @author:YanTu
@@ -352,6 +354,7 @@ public class TaxCalFrame extends JFrame{
 		taxesOutputPane.setBackground(Color.WHITE);
 		return taxesOutputPane;
 	}
+	
 	/**
 	 * @Description:税后收入结果面板
 	 * @author:YanTu
@@ -366,6 +369,7 @@ public class TaxCalFrame extends JFrame{
 		salaryAfterTaxPane.setBackground(Color.WHITE);
 		return salaryAfterTaxPane;
 	}
+	
 	/**
 	 * @Description:税前收入结果面板
 	 * @author:YanTu
