@@ -5,32 +5,32 @@ import java.math.BigDecimal;
 import entity.IncomeTax;
 
 /**
- * Ë°ÊÕ¼ÆËã¹¤¾ßÀà
- * @Description:ÓÃÓÚ¼ÆËã¸öË°£¬ºÍ¸ù¾İ¸öË°¼ÆËã¹¤×Ê½±½ğ
+ * Ë°ï¿½Õ¼ï¿½ï¿½ã¹¤ï¿½ï¿½ï¿½ï¿½
+ * @Description:ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Í¸ï¿½ï¿½İ¸ï¿½Ë°ï¿½ï¿½ï¿½ã¹¤ï¿½Ê½ï¿½ï¿½ï¿½
  * @author YanTu
- * @date:2017Äê5ÔÂ17ÈÕÉÏÎç10:32:28
+ * @date:2017ï¿½ï¿½5ï¿½ï¿½17ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10:32:28
  */
 public class TaxUtil {
 	
-	private static final double THRESHOLD = 3500.0;//ÆğÕ÷µã
+	private static final double THRESHOLD = 3500.0;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	/**
-	 * ¸öË°¼ÆËã·½·¨
-	 * @Description:¸ù¾İ¹¤×Ê½±½ğÊÕÈë¼ÆËã¸öÈËËùµÃË°
+	 * ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ã·½ï¿½ï¿½
+	 * @Description:ï¿½ï¿½ï¿½İ¹ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÉÏÎç10:40:53
+	 * @date:2017ï¿½ï¿½5ï¿½ï¿½17ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10:40:53
 	 */
 	public static IncomeTax getIncomeTaxForSalary(IncomeTax incomeTax){
-		//ÅĞ¿Õ
+		//ï¿½Ğ¿ï¿½
 		if(incomeTax == null || incomeTax.getSalaryBeforeTax() == null ||
 				incomeTax.getSocialInsurance() == null || incomeTax.getHousingFund() == null){
 			return null;
 		}
-		//¸öË°
+		//ï¿½ï¿½Ë°
 		double taxes = 0.0;
-		//Ë°ºóÊÕÈë
+		//Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		double salaryAfterTax = 0.0;
-		//Ó¦ÄÉË°ËùµÃ¶î
+		//Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Ã¶ï¿½
 		double taxableIncome = incomeTax.getSalaryBeforeTax()  - incomeTax.getSocialInsurance() 
 				- incomeTax.getHousingFund() - THRESHOLD;
 		taxes = countIncomeTaxInChengdu2017(taxableIncome);
@@ -42,22 +42,22 @@ public class TaxUtil {
 	}
 	
 	/**
-	 * Ë°Ç°¹¤×Ê¼ÆËã·½·¨
-	 * @Description:Í¨¹ı¸öÈËËùµÃË°¼ÆËãË°Ç°¹¤×Ê
+	 * Ë°Ç°ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ã·½ï¿½ï¿½
+	 * @Description:Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ï¿½Ë°Ç°ï¿½ï¿½ï¿½ï¿½
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÏÂÎç2:05:44
+	 * @date:2017ï¿½ï¿½5ï¿½ï¿½18ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2:05:44
 	 */
 	public static IncomeTax getSalaryByTax(IncomeTax incomeTax){
-		//ÅĞ¿Õ
+		//ï¿½Ğ¿ï¿½
 		if(incomeTax == null || incomeTax.getTaxes() == null ||
 				incomeTax.getSocialInsurance() == null || incomeTax.getHousingFund() == null){
 			return null;
 		}
-		//Ë°Ç°ÊÕÈë
+		//Ë°Ç°ï¿½ï¿½ï¿½ï¿½
 		double salaryBeforeTax = 0.0;
-		//Ë°ºóÊÕÈë
+		//Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		double salaryAfterTax = 0.0;
-		//Ó¦ÄÉË°ËùµÃ¶î
+		//Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Ã¶ï¿½
 		double taxableIncome = countTaxableIncomeByTaxInChengdu2017(incomeTax.getTaxes());
 		salaryBeforeTax = taxableIncome + incomeTax.getSocialInsurance() 
 				+ incomeTax.getHousingFund() + THRESHOLD;
@@ -69,10 +69,10 @@ public class TaxUtil {
 	}
 	
 	/**
-	 * ¼ÆËãË°ºóÊÕÈë
+	 * ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @Description:TODO
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÉÏÎç10:59:08
+	 * @date:2017ï¿½ï¿½5ï¿½ï¿½17ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10:59:08
 	 */
 	private static double getSalaryAfterTax(IncomeTax incomeTax) {
 		double salaryAfterTax = incomeTax.getSalaryBeforeTax() - incomeTax.getSocialInsurance() 
@@ -82,13 +82,13 @@ public class TaxUtil {
 	}
 
 	/**
-	 * ³É¶¼2017¸öÈËËùµÃË°¹Ì¶¨¼ÆËã·½·¨
-	 * @Description:¸ù¾İÄ¿Ç°µÄ¼ÆËã¹æÔò£¬Í¨¹ıÓ¦ÄÉË°ËùµÃ¶î¼ÆËã¸öË°
+	 * ï¿½É¶ï¿½2017ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ã·½ï¿½ï¿½
+	 * @Description:ï¿½ï¿½ï¿½ï¿½Ä¿Ç°ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½Ë°
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÉÏÎç10:35:00
+	 * @date:2017ï¿½ï¿½5ï¿½ï¿½17ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½10:35:00
 	 */
 	private static double countIncomeTaxInChengdu2017(double taxableIncome){
-		//¸öÈËËùµÃË°¼ÆËã¹«Ê½:Ó¦ÄÉË°¶î=Ó¦ÄÉË°ËùµÃ¶î*ÊÊÓÃË°ÂÊ-ËÙËã¿Û³ıÊı
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ã¹«Ê½:Ó¦ï¿½ï¿½Ë°ï¿½ï¿½=Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Ã¶ï¿½*ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½Û³ï¿½ï¿½ï¿½
 		double tax = 0.0;
 		if(taxableIncome <= 0){
 			return tax;
@@ -104,17 +104,17 @@ public class TaxUtil {
 			tax = taxableIncome * 0.3 - 2755;
 		}else if(taxableIncome > 55000 && taxableIncome <= 80000){
 			tax = taxableIncome * 0.35 - 5505;
-		}else{//³¬¹ı8Íò
+		}else{//ï¿½ï¿½ï¿½ï¿½8ï¿½ï¿½
 			tax = taxableIncome * 0.45 - 13505;
 		}
 		return new BigDecimal(tax).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	
 	/**
-	 * ³É¶¼2017¸ù¾İ¸öÈËËùµÃË°·´ËãÓ¦ÄÉË°ËùµÃ¶î¹Ì¶¨¼ÆËã·½·¨
-	 * @Description:Í¨¹ı¸öÈËËùµÃË°·´ËãÓ¦ÄÉË°ËùµÃ¶î£¬¹æÔòÓë¸öÈËËùµÃË°¼ÆËã¹æÔòÏàÍ¬
+	 * ï¿½É¶ï¿½2017ï¿½ï¿½ï¿½İ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Ã¶ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ã·½ï¿½ï¿½
+	 * @Description:Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ë°ï¿½ï¿½ï¿½Ã¶î£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÏÂÎç1:53:14
+	 * @date:2017ï¿½ï¿½5ï¿½ï¿½18ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1:53:14
 	 */
 	private static double countTaxableIncomeByTaxInChengdu2017(double tax){
 		double taxableIncome = 0.0;
