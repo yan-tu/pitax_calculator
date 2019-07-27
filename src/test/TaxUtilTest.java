@@ -7,12 +7,12 @@ public class TaxUtilTest {
 	public static void main(String[] args) {
 		IncomeTax incomeTax = new IncomeTax(7350,250.34,120);
 		IncomeTax resultIncomeTax = TaxUtil.getIncomeTaxForSalary(incomeTax);
-		System.out.println("Äã±¾ÔÂÓ¦¿Û¸öÈËËùµÃË°Îª:"+resultIncomeTax.getTaxes()+"£¬Ë°ºóÊÕÈëÎª£º"+resultIncomeTax.getSalaryAfterTax());
+		System.out.println("ä½ æœ¬æœˆåº”æ‰£ä¸ªäººæ‰€å¾—ç¨ä¸º:"+resultIncomeTax.getTaxes()+"ï¼Œç¨åæ”¶å…¥ä¸ºï¼š"+resultIncomeTax.getSalaryAfterTax());
 
-//		IncomeTax incomeTax = new IncomeTax(1200);//Í¨¹ı¸öË°¹¹Ôì¶ÔÏó
-//		incomeTax.setSocialInsurance(300.0);//Éç±£·Ñ
-//		incomeTax.setHousingFund(600.0);//¹«»ı½ğ·ÑÓÃ
+//		IncomeTax incomeTax = new IncomeTax(1200);//é€šè¿‡ä¸ªç¨æ„é€ å¯¹è±¡
+//		incomeTax.setSocialInsurance(300.0);//ç¤¾ä¿è´¹
+//		incomeTax.setHousingFund(600.0);//å…¬ç§¯é‡‘è´¹ç”¨
 //		IncomeTax resultIncomeTax = TaxUtil.getSalaryByTax(incomeTax);
-//		System.out.println("Äã±¾ÔÂË°Ç°ÊÕÈëÎª:"+resultIncomeTax.getSalaryBeforeTax()+"£¬Ë°ºóÊÕÈëÎª£º"+resultIncomeTax.getSalaryAfterTax());
+//		System.out.println("ä½ æœ¬æœˆç¨å‰æ”¶å…¥ä¸º:"+resultIncomeTax.getSalaryBeforeTax()+"ï¼Œç¨åæ”¶å…¥ä¸ºï¼š"+resultIncomeTax.getSalaryAfterTax());
 	}
 }
