@@ -12,7 +12,7 @@ public class StringOperateUtil {
 	 * @author:YanTu
 	 * @date:2017年5月17日下午5:07:58
 	 */
-	public static boolean isExist(String str) {
+	public static boolean isNotEmpty(String str) {
 		if(str != null && !str.equals("")){
 			return true;
 		}
@@ -25,7 +25,7 @@ public class StringOperateUtil {
 	 * @author:YanTu
 	 * @date:2017年5月17日下午5:07:38
 	 */
-	public static boolean isNotExist(String str){
+	public static boolean isEmpty(String str){
 		if(str == null || "".equals(str)){
 			return true;
 		}
@@ -39,7 +39,7 @@ public class StringOperateUtil {
 	 * @date:2017年5月17日下午5:08:10
 	 */
 	public static boolean isPureNumber(String inputStr) {
-		if(isNotExist(inputStr)) return false;
+		if(isEmpty(inputStr)) return false;
 		String regStr = "^[+-]?[1-9][0-9]*$|^0$";
 		return inputStr.matches(regStr);
 	}
@@ -51,8 +51,8 @@ public class StringOperateUtil {
 	 * @date:2017年5月18日上午11:34:36
 	 */
 	public static boolean isNumber(String inputStr){
-		if(isNotExist(inputStr)) return false;
-		String regStr = "^[+-]?(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$";
+		if(isEmpty(inputStr)) return false;
+		String regStr = "^[+-]?(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*)|([0-9]+\\.[0-9]+)|([0-9]*))$";
 		return inputStr.matches(regStr);
 	}
 	
@@ -61,5 +61,10 @@ public class StringOperateUtil {
 		System.out.println(isNumber("-23"));
 		System.out.println(isNumber("23"));
 		System.out.println(isNumber("23.5343"));
+		System.out.println(isNumber("0.5343"));
+		System.out.println(isNumber("0.0"));
+		System.out.println(isNumber("0.z"));
+		System.out.println(isNumber("0"));
 	}
+
 }
