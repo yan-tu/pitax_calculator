@@ -3,20 +3,20 @@ package entity;
 import java.io.Serializable;
 
 /**
- * ¸öÈËËùµÃË°ÊµÌå
+ * ä¸ªäººæ‰€å¾—ç¨å®ä½“
  * @Description:TODO
  * @author YanTu
- * @date:2017Äê5ÔÂ17ÈÕÉÏÎç10:29:26
+ * @date:2017å¹´5æœˆ17æ—¥ä¸Šåˆ10:29:26
  */
 public class IncomeTax implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Double taxes;//Ë°·Ñ
-	private Double salaryBeforeTax;//Ë°Ç°¹¤×Ê½±½ğ×ÜÊÕÈë
-	private Double socialInsurance;//Éç»á±£ÏÕ·Ñ
-	private Double housingFund;//×¡·¿¹«»ı½ğ
-	private Double salaryAfterTax;//Ë°ºóÊÕÈë
+	private Double taxes;//ç¨è´¹
+	private Double salaryBeforeTax;//ç¨å‰å·¥èµ„å¥–é‡‘æ€»æ”¶å…¥
+	private Double socialInsurance;//ç¤¾ä¼šä¿é™©è´¹
+	private Double housingFund;//ä½æˆ¿å…¬ç§¯é‡‘
+	private Double salaryAfterTax;//ç¨åæ”¶å…¥
 	
 	public IncomeTax() {
 	}

@@ -5,32 +5,32 @@ import java.math.BigDecimal;
 import entity.IncomeTax;
 
 /**
- * ˰�ռ��㹤����
- * @Description:���ڼ����˰���͸��ݸ�˰���㹤�ʽ���
+ * 税收计算工具类
+ * @Description:用于计算个税，和根据个税计算工资奖金
  * @author YanTu
- * @date:2017��5��17������10:32:28
+ * @date:2017年5月17日上午10:32:28
  */
 public class TaxUtil {
 	
-	private static final double THRESHOLD = 3500.0;//������
+	private static final double THRESHOLD = 3500.0;//起征点
 	
 	/**
-	 * ��˰���㷽��
-	 * @Description:���ݹ��ʽ�����������������˰
+	 * 个税计算方法
+	 * @Description:根据工资奖金收入计算个人所得税
 	 * @author:YanTu
-	 * @date:2017��5��17������10:40:53
+	 * @date:2017年5月17日上午10:40:53
 	 */
 	public static IncomeTax getIncomeTaxForSalary(IncomeTax incomeTax){
-		//�п�
+		//判空
 		if(incomeTax == null || incomeTax.getSalaryBeforeTax() == null ||
 				incomeTax.getSocialInsurance() == null || incomeTax.getHousingFund() == null){
 			return null;
 		}
-		//��˰
+		//个税
 		double taxes = 0.0;
-		//˰������
+		//税后收入
 		double salaryAfterTax = 0.0;
-		//Ӧ��˰���ö�
+		//应纳税所得额
 		double taxableIncome = incomeTax.getSalaryBeforeTax()  - incomeTax.getSocialInsurance() 
 				- incomeTax.getHousingFund() - THRESHOLD;
 		taxes = countIncomeTaxInChengdu2017(taxableIncome);
@@ -42,22 +42,22 @@ public class TaxUtil {
 	}
 	
 	/**
-	 * ˰ǰ���ʼ��㷽��
-	 * @Description:ͨ����������˰����˰ǰ����
+	 * 税前工资计算方法
+	 * @Description:通过个人所得税计算税前工资
 	 * @author:YanTu
-	 * @date:2017��5��18������2:05:44
+	 * @date:2017年5月18日下午2:05:44
 	 */
 	public static IncomeTax getSalaryByTax(IncomeTax incomeTax){
-		//�п�
+		//判空
 		if(incomeTax == null || incomeTax.getTaxes() == null ||
 				incomeTax.getSocialInsurance() == null || incomeTax.getHousingFund() == null){
 			return null;
 		}
-		//˰ǰ����
+		//税前收入
 		double salaryBeforeTax = 0.0;
-		//˰������
+		//税后收入
 		double salaryAfterTax = 0.0;
-		//Ӧ��˰���ö�
+		//应纳税所得额
 		double taxableIncome = countTaxableIncomeByTaxInChengdu2017(incomeTax.getTaxes());
 		salaryBeforeTax = taxableIncome + incomeTax.getSocialInsurance() 
 				+ incomeTax.getHousingFund() + THRESHOLD;
@@ -69,10 +69,10 @@ public class TaxUtil {
 	}
 	
 	/**
-	 * ����˰������
+	 * 计算税后收入
 	 * @Description:TODO
 	 * @author:YanTu
-	 * @date:2017��5��17������10:59:08
+	 * @date:2017年5月17日上午10:59:08
 	 */
 	private static double getSalaryAfterTax(IncomeTax incomeTax) {
 		double salaryAfterTax = incomeTax.getSalaryBeforeTax() - incomeTax.getSocialInsurance() 
@@ -82,13 +82,13 @@ public class TaxUtil {
 	}
 
 	/**
-	 * �ɶ�2017��������˰�̶����㷽��
-	 * @Description:����Ŀǰ�ļ������ͨ��Ӧ��˰���ö�����˰
+	 * 成都2017个人所得税固定计算方法
+	 * @Description:根据目前的计算规则，通过应纳税所得额计算个税
 	 * @author:YanTu
-	 * @date:2017��5��17������10:35:00
+	 * @date:2017年5月17日上午10:35:00
 	 */
 	private static double countIncomeTaxInChengdu2017(double taxableIncome){
-		//��������˰���㹫ʽ:Ӧ��˰��=Ӧ��˰���ö�*����˰��-����۳���
+		//个人所得税计算公式:应纳税额=应纳税所得额*适用税率-速算扣除数
 		double tax = 0.0;
 		if(taxableIncome <= 0){
 			return tax;
@@ -104,17 +104,17 @@ public class TaxUtil {
 			tax = taxableIncome * 0.3 - 2755;
 		}else if(taxableIncome > 55000 && taxableIncome <= 80000){
 			tax = taxableIncome * 0.35 - 5505;
-		}else{//����8��
+		}else{//超过8万
 			tax = taxableIncome * 0.45 - 13505;
 		}
 		return new BigDecimal(tax).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
 	}
 	
 	/**
-	 * �ɶ�2017���ݸ�������˰����Ӧ��˰���ö�̶����㷽��
-	 * @Description:ͨ����������˰����Ӧ��˰���ö�������������˰���������ͬ
+	 * 成都2017根据个人所得税反算应纳税所得额固定计算方法
+	 * @Description:通过个人所得税反算应纳税所得额，规则与个人所得税计算规则相同
 	 * @author:YanTu
-	 * @date:2017��5��18������1:53:14
+	 * @date:2017年5月18日下午1:53:14
 	 */
 	private static double countTaxableIncomeByTaxInChengdu2017(double tax){
 		double taxableIncome = 0.0;

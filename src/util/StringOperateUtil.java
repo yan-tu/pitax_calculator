@@ -1,16 +1,16 @@
 package util;
 /**
- * ×Ö·û´®²Ù×÷¹¤¾ßÀà
+ * å­—ç¬¦ä¸²æ“ä½œå·¥å…·ç±»
  * @Description:TODO
  * @author YanTu
- * @date:2017Äê5ÔÂ17ÈÕÏÂÎç5:07:03
+ * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ5:07:03
  */
 public class StringOperateUtil {
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñ´æÔÚ
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦å­˜åœ¨
 	 * @Description:TODO
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç5:07:58
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ5:07:58
 	 */
 	public static boolean isExist(String str) {
 		if(str != null && !str.equals("")){
@@ -20,10 +20,10 @@ public class StringOperateUtil {
 	}
 	
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñ²»´æÔÚ
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸å­˜åœ¨
 	 * @Description:TODO
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç5:07:38
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ5:07:38
 	 */
 	public static boolean isNotExist(String str){
 		if(str == null || "".equals(str)){
@@ -33,10 +33,10 @@ public class StringOperateUtil {
 	}
 	
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÖĞÊÇ·ñÎª´¿Êı×Ö£¨ÕûÊı£©
+	 * åˆ¤æ–­å­—ç¬¦ä¸²ä¸­æ˜¯å¦ä¸ºçº¯æ•°å­—ï¼ˆæ•´æ•°ï¼‰
 	 * @Description:TODO
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ17ÈÕÏÂÎç5:08:10
+	 * @date:2017å¹´5æœˆ17æ—¥ä¸‹åˆ5:08:10
 	 */
 	public static boolean isPureNumber(String inputStr) {
 		if(isNotExist(inputStr)) return false;
@@ -45,10 +45,10 @@ public class StringOperateUtil {
 	}
 	
 	/**
-	 * ÅĞ¶Ï×Ö·û´®ÊÇ·ñÎªÊı×Ö£¨°üÀ¨¸¡µãÊı£©
+	 * åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯å¦ä¸ºæ•°å­—ï¼ˆåŒ…æ‹¬æµ®ç‚¹æ•°ï¼‰
 	 * @Description:TODO
 	 * @author:YanTu
-	 * @date:2017Äê5ÔÂ18ÈÕÉÏÎç11:34:36
+	 * @date:2017å¹´5æœˆ18æ—¥ä¸Šåˆ11:34:36
 	 */
 	public static boolean isNumber(String inputStr){
 		if(isNotExist(inputStr)) return false;
